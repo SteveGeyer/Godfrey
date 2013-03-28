@@ -4,6 +4,8 @@ Godfrey is designed to experiment with how humans interact with intelligent agen
 
 Cynthia Breazeal's wonderful [TED Talk](http://www.ted.com/talks/cynthia_breazeal_the_rise_of_personal_robots.html) supplies many examples of the kinds of exploration I would like to do with Godfrey.
 
+You can follow the development of Godfrey on my [blog](http://myrobotgodfrey.blogspot.com/).
+
 
 Goals
 =====

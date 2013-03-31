@@ -4,12 +4,12 @@ Godfrey is designed to experiment with how humans interact with intelligent agen
 
 Cynthia Breazeal's wonderful [TED Talk](http://www.ted.com/talks/cynthia_breazeal_the_rise_of_personal_robots.html) supplies many examples of the kinds of exploration I would like to do with Godfrey.
 
-You can follow the development of Godfrey on my [blog](http://myrobotgodfrey.blogspot.com/).
+I will describe Godfrey's design and development on my [blog](http://myrobotgodfrey.blogspot.com/). The first few entries are basically the content of this README. Once the goals and plan have been outlined, I will talk about my progress and what I have learned in building Godfrey.
 
 
 Goals
 =====
-* Godfrey's primary goal is to pull humans into a relationship with himself. This means he must be able to respond to human emotions and generate emotional cues that humans understand. He must also pursue independent goals and generally seem like a cognitive agent. A reactive planner similar in design to the CMU [Oz project](http://www.cs.cmu.edu/afs/cs/project/oz/web/oz.html) will control Godfrey's overall goals, behaviors and emotional responses. Oz's design has the advantage of being pragmatically engineered, very compatible with Godfrey's natural language component (see below) and it has mechanisms to infer and act on Godfrey's internal emotional states.
+* Godfrey's primary goal is to pull humans into a relationship with himself. This means he must be able to respond to human emotions and generate emotional cues that humans understand. He must also pursue independent goals and generally seem like a cognitive agent. A reactive planner similar in design to the CMU [Oz project](http://www.cs.cmu.edu/~./oz/papers.html) will control Godfrey's overall goals, behaviors and emotional responses. Oz's [HAP](http://www.cs.cmu.edu/~./oz/papers/CMU-CS-91-147.ps) has the advantage of being pragmatically engineered and very compatible with Godfrey's natural language component (see below). A. Bryan Loyall's [thesis](http://www.cs.cmu.edu/~./oz/papers/CMU-CS-96-138-1sided.ps) *Believable Social and Emotional Agents* shows how to augment HAP with mechanisms to infer and act on emotional states. Godfrey will use this overall design.
 
 * Godfrey must understand and speak English. His design will make no attempt to solve the difficult speech recognition or the natural language understanding problems. He will instead use preexisting products and live within their limitations. My plan is to use [PocketSphinx](http://cmusphinx.sourceforge.net/2010/03/pocketsphinx-0-6-release/) to convert speech into text and [Flite](http://www.speech.cs.cmu.edu/flite/doc/index.html) to convert the response back into audio for human hearing. He will approach human language processing like a chatbot on steroids. Bruce Wilcox's [ChatScript](http://sourceforge.net/projects/chatscript/) is a great example of a modern chatbot design which, with some modification, can handle PocketSphinx's more limited vocabulary, weak natural language understanding and generation of responses. ChatScript's topics and rules are very similar and compatible with Oz's plans and goals.
 
@@ -34,22 +34,23 @@ Goals
 * Ideally Godfrey that will cost less than $2000 to duplicate. Serious bonus points for a design that can be built under $1000. This is another goal that is simple to say and hard to achieve.
 
 
-Project Plan
-============
-This project will take the approach of building a simple and crude end-to-end system and then iterating to replace the weaker components over time.
+Godfrey's Project Plan
+======================
 
+My plan is to build a crude end-to-end Godfrey and iterate over time to make him better. Designing and building the crude version will supply valuable real-world insights on Godfrey's actual requirements. This will help me limit wasted time and money on unnecessary and expensive features (although Godfrey does deserve the best).
 
 Phase I
 =======
-Phase I's goal is to build a simple robot that meets the basic requirements and get all the hardware and software functioning together.
+Phase I will build a simple robot that meets Godfrey's basic requirements and has all the hardware and software functioning together in one system.
 
-The overall hardware architecture have a power train based on a two-wheel Segway-like balancing design controlled by an Arduino processor. This design only requires balancing in one axis while a [ballbot](http://en.wikipedia.org/wiki/Ballbot) design must balance in two axes. The face will be constructed using standard RC-servos and controlled by another Arduino. Both Arduinos will be attached to a Pandaboard for higher level control. I am hoping that a single Pandaboard will have enough computational power to support speech recognition, natural language processing, and run the reactive planner. How Godfrey will sense the environment for navigation and collision avoidance has not been decided. This version will have no docking port.
+The overall hardware architecture will have a power train based on a two-wheel, Segway-like, balancing design controlled by an Arduino processor. The face will be constructed using standard RC-servos and controlled by another Arduino. Godfrey will have movable eyes, eyelids, eyebrows, and ears.
 
-Its construction techniques will be wood, wood screws, hot glue, duct tape, etc.
+A [PandaBoard](http://pandaboard.org/) will provide higher level intelligence and control. It will be connected to the Arduinos through serial ports. I am hoping that a single PandaBoard will have enough computational power to support speech recognition, natural language processing, and run the reactive planner. How Godfrey will sense the environment for navigation and collision avoidance has not been decided. This version will have no docking port.
 
+The Phase I construction techniques will be wood, wood screws, hot glue, duct tape, etc. Simple and cheap rules the day.
 
 Phase II
 ========
-Phase II will take the learnings from Phase I and make Godfrey more realistic in all his weak dimensions. This means making the body and face be more artistically interesting. It will also require upgrades to the software components. This Phase will be based on a [Ballbot](http://en.wikipedia.org/wiki/Ballbot) motor train. This version will have a docking port and the necessary hardware and software to find, dock and charge itself.
+Phase II will take the learnings from Phase I and make Godfrey more realistic in all dimensions. This means making an artistically interesting the body and face. It will also require upgrades to the software components. The motor train will be a [Ballbot](http://en.wikipedia.org/wiki/Ballbot) design. This version will have a docking port and the necessary hardware and software to find, dock and charge itself.
 
 This phase will explore building custom parts and frames using specifically designed PC boards, 3D printing, CNC, laser cutting, etc.

@@ -9,7 +9,7 @@ With all of this hardware, the base can:
 1. It can move with left and right wheel independently in both the forward and backwards direction.
 2. It accurately measures wheel rotation. This is used to accurately determine the ground path. It also helps balance the natural variations in motor speed. 
 3. The base uses it gyroscopes to determine how fast it is pitching in any direction. This is use to balance the robot.
-4. It measures acceleration in all directions. Its primary use is to determine when Godfrey is upright. The gyroscopes are the primary actors in balancing, but this drift. The accelerometer measure down in a stable manner.
+4. It measures acceleration in all directions. Its primary use is to determine when Godfrey is upright. The gyroscopes are the primary actors in balancing, but they drift. The accelerometer measure the downward direction in a stable manner.
 5. It is able to communicate with other computer elements through its serial port.
 6. It measures the current usage of each motor. I am not sure I will use this.
 

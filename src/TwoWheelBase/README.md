@@ -1,8 +1,10 @@
-![Motor Base](https://github.com/SteveGeyer/Godfrey/blob/master/image/BasicMotorBase.png?raw=true)
-
 Godfrey's phase I motor base is a two-wheel balancing design. It contains all the elements necessary to detect the robot's position and balance and move the robot in its environment.
 
-At its heart is an Arduino Leonardo board. Connected to this board's serial port is a 9 Degrees of Freedom IMU programmed to continuously report the accelerator and gyroscope data. Also connected to the the Arduino through PWM lines is a two channel motor driver which itself is connected to the drive motors. The motor current reporting component of the motor drivers are feed back to two Arduino analog ports. The motors have built in rotary encoders and their signals are feed to the Arduino.
+Its schematic can be found [here](http://upverter.com/stevegeyer/1aa19b3adfc781d9/GodfreyTwoWheelBase/) on Upverter. It is constructed on a wood base using wood screws and hot glue. Here it what is looks like:
+
+![Motor Base](https://github.com/SteveGeyer/Godfrey/blob/master/image/BasicMotorBase.png?raw=true)
+
+At its heart is an Arduino Leonardo board. Connected to this board's serial port is the Sparkfun [9 Degrees of Freedom IMU](https://www.sparkfun.com/products/10736) programmed to continuously report the accelerator and gyroscope data. Also connected to the Arduino through PWM lines is the Pololu [two channel motor driver](http://www.pololu.com/catalog/product/708) which itself is connected to the drive motors. The motor current reporting component of the motor drivers are feed back to two Arduino analog ports. The motors also have built in rotary encoders and their signals are feed to the Arduino to measure rotation.
 
 With all of this hardware, the base can:
 
@@ -13,15 +15,13 @@ With all of this hardware, the base can:
 5. It is able to communicate with other computer elements through its serial port.
 6. It measures the current usage of each motor. I am not sure I will use this.
 
-The schematic for the two wheel base can be found [here](http://upverter.com/stevegeyer/1aa19b3adfc781d9/GodfreyTwoWheelBase/). 
+The IMU [program](https://github.com/SteveGeyer/Godfrey/blob/master/src/TwoWheelBase/IMU/IMU.ino) initializes the IMU hardware and once done continuously reports the accelerator and gyroscope values.
 
-The IMU program initializes the IMU hardware and once done continuously reports the accelerator and gyroscope values.
-
-The BaseTest program exercises and tests the hardware.
+The BaseTest [program](https://github.com/SteveGeyer/Godfrey/blob/master/src/TwoWheelBase/BaseTest/BaseTest.ino) exercises and tests the hardware.
 
 
-Parts
-=====
+Parts (purchased around January 2013)
+=====================================
 
 | Item | Vendor | Num | Price | Total |
 | ---- | ------ | --- | ----- | ----- |

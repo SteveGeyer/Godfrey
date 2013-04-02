@@ -33,14 +33,14 @@
 //   left-motor-milliamps
 //   right-motor-milliamps
 //   left-rotary-count
-//   left-rotary-count
+//   right-rotary-count
 //
 // It accepts several commands:
 //   m <left-motor> <right-motor> Set left and right motor speed. The values
 //                                are decimal values between -400 and 400.
 //                                Missing arguments default as zero.
-//   f <report-divider>           Set frequency of reports in multiples
-//                                of 50Hz. Defaults to reporting every
+//   f <report-divider>           Set the frequency of reports in multiples
+//                                of 50Hz. It defaults to reporting every
 //                                five seconds.
 //   r                            Toggle status reports on and off.
 //
@@ -71,7 +71,6 @@ static const unsigned char M_ROTARY_RIGHT_A =  5;
 static const unsigned char M_ROTARY_RIGHT_B =  3;
 
 static void          motor_init(void);
-static void          motor_check_faults(void);
 static void          left_set_speed(int speed);
 static unsigned int  left_milliamps(void);
 static unsigned char left_fault(void);

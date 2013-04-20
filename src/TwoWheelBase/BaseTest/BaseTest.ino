@@ -95,6 +95,17 @@ typedef struct
     process_line_t process_line;
 } buffer_t;
 
+#define NUMBER_TO_AVERAGE 50
+
+typedef struct
+{
+    int index;
+    unsigned int values[NUMBER_TO_AVERAGE];
+    unsigned int sum;
+} ave_t;
+
+static void ave_clear(ave_t* ave);
+static unsigned int ave(ave_t* ave, unsigned int new_value);
 static void buf_initialize(buffer_t* bufp, process_line_t process_line);
 static void buf_add_char(buffer_t* bufp, char ch);
 
@@ -121,6 +132,9 @@ static int g_left_old_value     = 0;
 static int g_right_rotary_count = 0;
 static int g_right_old_value    = 0;
 
+static ave_t g_left_ave_current;
+static ave_t g_right_ave_current;
+
 void setup()
 {
     Serial.begin(115200);
@@ -134,6 +148,8 @@ void setup()
     buf_initialize(&g_imu, process_imu_input);
     buf_initialize(&g_command_input, process_command_input);
     rotary_encoder_init();
+    ave_clear(&g_left_ave_current);
+    ave_clear(&g_right_ave_current);
 }
 
 void loop()
@@ -202,18 +218,23 @@ static void process_command_input(char* buffer)
 
 static void process_imu_input(char* buffer)
 {
+    unsigned int left_ma = left_milliamps();
+    unsigned int right_ma = right_milliamps();
+    unsigned int left_ave = ave(&g_left_ave_current, left_ma);
+    unsigned int right_ave = ave(&g_right_ave_current, right_ma);
+
     if (g_report_info)
     {
         if ((g_report_count++ % g_report_divider) == 0)
         {
             Serial.print(buffer);
-            Serial.print(left_milliamps());
+            Serial.print(left_ave);
             Serial.print(" ");
-            Serial.print(right_milliamps());
+            Serial.print(right_ave);
             Serial.print(" ");
-            Serial.print(g_left_rotary_count);
-            Serial.print(" ");
-            Serial.print(g_right_rotary_count);
+            // Serial.print(g_left_rotary_count);
+            // Serial.print(" ");
+            // Serial.print(g_right_rotary_count);
             Serial.println();
             g_left_rotary_count = 0;
             g_right_rotary_count = 0;
@@ -380,4 +401,22 @@ static unsigned int right_milliamps(void)
 static unsigned char right_fault(void)
 {
     return !digitalRead(M_EN1DIAG1);
+}
+
+static void ave_clear(ave_t* ave)
+{
+    int i;
+    ave->index = 0;
+    for (i = 0; i < NUMBER_TO_AVERAGE; i++)
+        ave->values[i] = 0;
+    ave->sum = 0;
+}
+
+static unsigned int ave(ave_t* ave, unsigned int new_value)
+{
+    ave->sum += new_value;
+    ave->sum -= ave->values[ave->index];
+    ave->values[ave->index] = new_value;
+    ave->index = (ave->index + 1) % NUMBER_TO_AVERAGE;
+    return ave->sum / NUMBER_TO_AVERAGE;
 }
